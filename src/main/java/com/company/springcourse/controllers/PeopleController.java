@@ -15,21 +15,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.springcourse.models.Person;
+import com.company.springcourse.repositories.PeopleRepository;
+import com.company.springcourse.services.ItemsService;
 import com.company.springcourse.services.PeopleService;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 	private final PeopleService peopleService;
+	private final ItemsService itemsService;
 	
 	@Autowired
-	public PeopleController(PeopleService peopleService) {
+	public PeopleController(PeopleService peopleService,ItemsService itemsService) {
 		super();
 		this.peopleService = peopleService;
+		this.itemsService = itemsService;
 	}
 	@GetMapping()
 	public String index(Model model) {
 		model.addAttribute("people", peopleService.findAll());
+		
+		itemsService.findByItemName("Samsung");
+		itemsService.findByOwner(peopleService.findOne(4));
+		peopleService.test();
+		
 		return "people/index";
 	}
 	@GetMapping("/{id}")

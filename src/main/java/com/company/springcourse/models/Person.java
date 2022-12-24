@@ -1,10 +1,13 @@
 package com.company.springcourse.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -36,6 +39,9 @@ public class Person {
 	    @Email
 	    @Column(name = "email")
 	    private String email;
+	    @OneToMany(mappedBy = "owner")
+	    private List<Item> items;
+	    
 	public Person(String name, int age) {
 		super();
 		this.name = name;
@@ -62,6 +68,13 @@ public class Person {
 	}
 	
 	
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 	public String getEmail() {
 		return email;
 	}

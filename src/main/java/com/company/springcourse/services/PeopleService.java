@@ -45,5 +45,9 @@ public class PeopleService {
 		peopleRepository.deleteById(id);
 	}
 	
-	
+	public void test() {
+		
+		System.out.println("Testing here with debug.Inside Hibernate Transaction");//breakpoint; in Expressions tab
+								// write and check methods of PeopleRepository
+	}
 }
