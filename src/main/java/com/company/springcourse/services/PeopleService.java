@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.company.springcourse.models.Mood;
 import com.company.springcourse.models.Person;
 import com.company.springcourse.repositories.PeopleRepository;
 
@@ -36,6 +37,7 @@ public class PeopleService {
 	@Transactional
 	public void save(Person person) {
 		person.setCreatedAt(LocalDateTime.now()); // if use type Date, person.setCreatedAt(new Date());
+		person.setMood(Mood.CALM);
 		peopleRepository.save(person);
 	}
 	@Transactional

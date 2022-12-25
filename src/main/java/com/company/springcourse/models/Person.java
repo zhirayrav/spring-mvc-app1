@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,6 +56,8 @@ public class Person {
 	    @Column(name = "created_at")
 //	    @Temporal(TemporalType.TIMESTAMP)      if use type Date , with this ann for mapping JDBC type
 	    private LocalDateTime createdAt;
+	    @Enumerated(EnumType.ORDINAL) //or STRING, as default ORDINAL
+	    private Mood mood;
 	    
 	public Person(String name, int age) {
 		super();
@@ -85,6 +89,12 @@ public class Person {
 	
 	
 	
+	public Mood getMood() {
+		return mood;
+	}
+	public void setMood(Mood mood) {
+		this.mood = mood;
+	}
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
