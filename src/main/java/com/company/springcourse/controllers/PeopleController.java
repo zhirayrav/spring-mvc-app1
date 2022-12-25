@@ -35,10 +35,6 @@ public class PeopleController {
 	public String index(Model model) {
 		model.addAttribute("people", peopleService.findAll());
 		
-		itemsService.findByItemName("Samsung");
-		itemsService.findByOwner(peopleService.findOne(4));
-		peopleService.test();
-		
 		return "people/index";
 	}
 	@GetMapping("/{id}")

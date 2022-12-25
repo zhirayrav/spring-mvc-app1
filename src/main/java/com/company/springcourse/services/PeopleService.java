@@ -2,6 +2,8 @@ package com.company.springcourse.services;
 
 
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +35,7 @@ public class PeopleService {
 	}
 	@Transactional
 	public void save(Person person) {
+		person.setCreatedAt(LocalDateTime.now()); // if use type Date, person.setCreatedAt(new Date());
 		peopleRepository.save(person);
 	}
 	@Transactional
@@ -45,9 +48,5 @@ public class PeopleService {
 		peopleRepository.deleteById(id);
 	}
 	
-	public void test() {
-		
-		System.out.println("Testing here with debug.Inside Hibernate Transaction");//breakpoint; in Expressions tab
-								// write and check methods of PeopleRepository
-	}
+	
 }

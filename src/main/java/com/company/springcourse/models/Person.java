@@ -1,5 +1,8 @@
 package com.company.springcourse.models;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,11 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 
@@ -41,6 +47,13 @@ public class Person {
 	    private String email;
 	    @OneToMany(mappedBy = "owner")
 	    private List<Item> items;
+//	    @Temporal(TemporalType.DATE)          if use type date ,with this ann for mapping JDBC type
+	    @DateTimeFormat(pattern = "dd/MM/yyyy")
+	    @Column(name = "date_of_birth")
+	    private LocalDate dateOfBirth;
+	    @Column(name = "created_at")
+//	    @Temporal(TemporalType.TIMESTAMP)      if use type Date , with this ann for mapping JDBC type
+	    private LocalDateTime createdAt;
 	    
 	public Person(String name, int age) {
 		super();
@@ -69,6 +82,21 @@ public class Person {
 	
 	
 	
+	
+	
+	
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 	public List<Item> getItems() {
 		return items;
 	}
