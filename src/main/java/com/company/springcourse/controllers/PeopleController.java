@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.springcourse.dao.PersonDAO;
 import com.company.springcourse.models.Person;
 import com.company.springcourse.repositories.PeopleRepository;
 import com.company.springcourse.services.ItemsService;
@@ -23,18 +24,18 @@ import com.company.springcourse.services.PeopleService;
 @RequestMapping("/people")
 public class PeopleController {
 	private final PeopleService peopleService;
-	private final ItemsService itemsService;
+	private final PersonDAO personDAO;
 	
 	@Autowired
-	public PeopleController(PeopleService peopleService,ItemsService itemsService) {
+	public PeopleController(PeopleService peopleService,PersonDAO personDAO) {
 		super();
 		this.peopleService = peopleService;
-		this.itemsService = itemsService;
+		this.personDAO = personDAO;
 	}
 	@GetMapping()
 	public String index(Model model) {
-		model.addAttribute("people", peopleService.findAll());
-		
+//		model.addAttribute("people", peopleService.findAll());
+		personDAO.testNPlus1();
 		return "people/index";
 	}
 	@GetMapping("/{id}")
